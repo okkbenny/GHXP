@@ -1,0 +1,143 @@
+GHXP | Complete Beginner Setup Guide
+Make Clone Hero Look Like Classic Guitar Hero
+
+*A beginner-friendly guide to the classic HUD, songs and performance videos — with GHXP to remove the manual background-installation work.*
+
+What this guide does: Brings together the original tools/resources required to reproduce a Guitar Hero-inspired Clone Hero setup. You download content from its original source; GHXP helps install your already-downloaded song-specific videos.
+
+Platform: Windows 11 for GHXP. Updated: November 19, 2026.
+
+Before you begin
+
+- Clone Hero and a guitar/keyboard controller that works in the game.
+- A Windows 11 PC if you plan to use GHXP.
+- Python 3.10+ (with tkinter) to run GHXP; it uses only standard-library modules.
+- The ability to extract ZIP archives (Windows File Explorer is enough for ZIPs).
+- Enough storage for the song charts and background videos you select.
+
+Important: This guide does not bundle or grant permission to download commercial music or copyrighted videos. Check the availability and terms at the original resources and only use content you are entitled to use.
+
+Resource directory — all in one place
+
+| Resource | Where to go | Purpose |
+
+| Clone Hero | https://clonehero.net/ | Base game |
+| GHLarp | https://github.com/arceuss/GHLarp/releases/ | Guitar Hero-style HUD/themes |
+| Songs & setlists | https://docs.google.com/spreadsheets/d/13B823ukxdVMocowo1s5XnT3tzciOfruhUVePENKc01o/htmlview#gid=0 | Community song/chart resource directory |
+| Performance backgrounds | https://docs.google.com/spreadsheets/u/0/d/1mKjWQptErA6qolvxx-EYQUl1mECp1_7Q4BEd3zZb69w/htmlview | Song-specific video resource directory |
+| GHXP | This GitHub repository (and Releases) | Safe automatic assignment of downloaded videos |
+
+Recommended order: Clone Hero → GHLarp → songs/charts → performance backgrounds → GHXP → enable videos.
+
+Step 1 — Install and test Clone Hero
+
+1. Visit https://clonehero.net/ and download the official game.
+2. Install/extract it, launch it, and confirm that your controller or keyboard works.
+3. Find the Songs directory used by this installation. On typical Windows installations this is often Documents\Clone Hero\Songs; portable mode uses PlayerData\Songs inside the installation directory. Your installation may be elsewhere.
+4. If unsure which one is active, use Clone Hero's Open Default Songs Folder option in General settings and check the location.
+5. If you maintain multiple installations, make a note of the one that Clone Hero actually scans — GHXP must use that same library.
+
+Step 2 — Install GHLarp for the classic HUD and visuals
+
+GHLarp is a separate mod by arceuss. It changes the look of Clone Hero; GHXP deals with background video files later.
+
+1. Open https://github.com/arceuss/GHLarp/releases/.
+2. Check the release notes for the Clone Hero build required by that specific GHLarp release. For example, GHLarp v1.0.2 states support for Clone Hero v1.1.0.6161 and not build 6142; this can change in future releases.
+3. Download the compatible release and extract it.
+4. Copy version.dll and the ghlarp folder into the root of your Clone Hero installation beside the Clone Hero executable, not into Songs.
+5. Start Clone Hero and press F10 to open the GHLarp menu.
+6. Choose/configure the classic Guitar Hero HUD and visual options you want.
+
+No separate theme downloads are needed for this walkthrough. Use the themes included with the GHLarp installation you have. The standalone theme repository is optional and is not a required step here.
+
+If the menu does not appear: check that the mod files are in the game installation root (not the Documents/Songs folder) and review release/build compatibility. Only run third-party mods you trust.
+
+Step 3 — Add songs and charts
+
+Songs and setlists directory: https://docs.google.com/spreadsheets/d/13B823ukxdVMocowo1s5XnT3tzciOfruhUVePENKc01o/htmlview#gid=0
+
+1. Open the directory and find a game, chart pack, or song collection you have permission to use.
+2. Download and extract the charts. Do not leave song charts zipped in your Clone Hero Songs directory.
+3. Copy each extracted song chart folder into your active Clone Hero Songs directory. You may group them into folders like Guitar Hero World Tour, then into individual songs.
+4. A working song folder normally includes a chart (notes.chart or notes.mid), song.ini, and audio files.
+5. Open Clone Hero and Scan Songs. Test one song to verify it loads.
+
+Example nested directory (both single folders and nested game packs work):
+
+Documents/Clone Hero/Songs/
+  Guitar Hero World Tour/
+    Guitar Hero World Tour/
+      Coldplay - Shiver/
+        song.ini
+        notes.chart
+        song.ogg
+
+Step 4 — Download song-specific performance videos
+
+Performance background directory: https://docs.google.com/spreadsheets/u/0/d/1mKjWQptErA6qolvxx-EYQUl1mECp1_7Q4BEd3zZb69w/htmlview
+
+1. Locate a performance background for a song you have already installed.
+2. Download it as a ZIP archive or extract it into a folder named after the song.
+3. Keep the downloaded ZIPs/folders together, preferably in a dedicated folder such as Downloads\GHXP Backgrounds.
+4. Preserve the ZIP or outer folder's song title. Inside, the actual video is usually simply video.mp4, video.webm, etc. GHXP identifies the song from the ZIP/folder name, not from that generic video filename.
+
+Downloads/GHXP Backgrounds/
+  Shiver-20261118T211812Z-1-001.zip  (contains video.mp4)
+  Rebel Yell/                         (contains video.webm)
+  Satch Boogie.zip                    (contains video.mp4)
+
+GHXP removes common timestamp suffixes and can find the one video.* file even when it is inside an extra layer in the ZIP/folder. If multiple videos or no video.* files are present, it flags the source for review.
+
+Step 5 — Use GHXP to assign the backgrounds automatically
+
+GHXP is a small Windows utility included in this GitHub repository. It handles the repetitive job of matching a video to the appropriate chart folder.
+
+1. Download or clone this repository, or download its release ZIP, then extract the GHXP files fully.
+2. If needed, install Python 3.10+ from https://www.python.org/downloads/windows/. Make sure Python is available from the Windows launcher (py -3) or on PATH. Standard Windows Python normally includes tkinter.
+3. Open the GHXP application folder and double-click START_INSTALLER.bat.
+4. For Source Folder, choose the folder containing your song-named ZIPs and/or extracted folders, directly inside that selected source location.
+5. For Clone Hero Songs, select the actual Songs directory used by Clone Hero.
+6. Keep the scan mode set to Both (unless you want only ZIPs or only extracted folders).
+7. Click 1 Preview matches. Check the song titles and the proposed chart folders before installing.
+8. If a song is marked REVIEW, AMBIGUOUS, or NO MATCH, use manual assignment rather than assuming the suggestion is right. GHXP avoids guessing at duplicates.
+9. Click 2 Install ready videos to copy the matched videos.
+
+Example: Shiver-20261118T211812Z-1-001.zip (video inside: video.mp4) → Coldplay - Shiver/video.mp4.
+
+Built-in safeguards: GHXP does not overwrite existing video.* files, delete your downloaded archives/folders, or modify song charts/audio. It only copies the video file as-is and does not convert codecs. If both a ZIP and extracted folder target the same song, GHXP flags that conflict.
+
+Step 6 — Enable song videos and test the finished setup
+
+1. Launch/restart Clone Hero and Scan Songs if needed.
+2. Open Settings → Gameplay and enable Song Videos. Use Song Backgrounds is for song-specific still images and can also be enabled when appropriate.
+3. Play a song where you installed a background. The performance video should play behind the highway.
+4. If the video plays out of sync, pause the song → Song Settings → Video Start Time and adjust it. This value can also be set via video_start_time in song.ini.
+
+Manual alternative: GHXP is optional. To install a video manually, place a properly named video.mp4, video.webm, etc. directly inside that song's chart folder and enable Song Videos. GHXP saves time when there are many songs.
+
+Troubleshooting and quick answers
+
+GHXP won't start — Confirm Python 3.10+ (py -3 --version), extract the ZIP fully, and keep START_INSTALLER.bat beside GHXP.py. The GUI also needs tkinter, normally included with Python for Windows.
+
+GHXP reports NO MATCH — Check the selected Songs directory and the download's song title. The ZIP/folder should identify the song; the video itself will still be called video.mp4 etc. Use manual assignment if needed.
+
+REVIEW / AMBIGUOUS / DUPLICATE — Multiple chart versions or source copies can collide. GHXP does not install these blindly. Verify the intended chart folder in the preview.
+
+EXISTS — The target chart already contains a video.* background. GHXP deliberately skips it instead of overwriting.
+
+Song doesn't appear — Extract the chart files into a valid song folder and run Scan Songs. Do not confuse the game installation folder with your Songs data folder.
+
+Background doesn't play — Check the file is named video plus a supported extension (no accidental .mp4.mp4), Song Videos is enabled, and the codec is supported. Clone Hero's wiki lists Windows formats including H.264/x264 MP4 and VP8 WebM. GHXP does not transcode videos. See: https://wiki.clonehero.net/books/guides-and-tutorials/page/custom-content
+
+GHLarp isn't working — Verify compatible Clone Hero build and install version.dll and ghlarp next to the game executable; press F10. Additional theme packs are not needed for this walkthrough.
+
+Credits and independent-project note
+
+- Clone Hero: https://clonehero.net/
+- GHLarp: created by arceuss — https://github.com/arceuss/GHLarp/releases/
+- Songs and performance video directories: maintained by their respective communities and creators; links above.
+- GHXP: an independent local background-assignment utility, not an official Clone Hero or GHLarp product.
+
+GHXP does not download, host, or bundle song charts, commercial music, or performance-video libraries. All external downloads remain under their respective creators' terms and rights.
+
+Official background setup documentation: https://wiki.clonehero.net/books/guides-and-tutorials/page/custom-content

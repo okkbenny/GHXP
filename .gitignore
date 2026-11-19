@@ -1,0 +1,9 @@
+# Python and editor-generated files
+__pycache__/
+*.py[cod]
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

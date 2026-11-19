@@ -1,0 +1,92 @@
+GHXP — PREREQUISITES & INSTALLATION (WINDOWS)
+================================================
+GHXP is an unofficial community utility for installing song background videos
+into Clone Hero. It is not affiliated with or endorsed by Clone Hero.
+
+WHAT YOU NEED
+-------------
+1. A Windows PC (designed for Windows 11).
+   Windows 10 may work, but it has not been verified.
+
+2. Python 3.10 or newer installed on your computer.
+   Official Windows download: https://www.python.org/downloads/windows/
+   During installation, enable "Add python.exe to PATH" if offered.
+   The standard Windows Python installation normally includes tkinter,
+   which GHXP uses for its graphical interface.
+
+3. Clone Hero installed, with your song charts already available in a
+   Songs folder. You must know where that Songs folder is located.
+   Common example: Documents\Clone Hero\Songs
+   The actual location may differ if you use another installation or drive.
+
+4. The background videos you want to install, downloaded as either:
+   * ZIP archives named after the song (for example, Shiver.zip), OR
+   * Extracted folders named after the song (for example, Shiver\video.mp4).
+   Mixed ZIPs and folders in the same source directory are supported.
+
+NO OTHER PACKAGES REQUIRED
+--------------------------
+GHXP uses only Python's standard library. You do NOT need to install
+pip packages, Git, Node.js, or any AI software to run it.
+No compiled .exe is included: Python must be installed.
+
+HOW TO RUN GHXP
+---------------
+1. On GitHub, download the Release ZIP (or use Code > Download ZIP).
+2. Right-click the ZIP and choose "Extract All". Do NOT run from inside the ZIP.
+3. Open the extracted GHXP folder.
+4. Double-click START_INSTALLER.bat.
+   Alternatively, open a terminal in that folder and run: py -3 GHXP.py
+5. Set SOURCE FOLDER to the directory containing the ZIPs and/or folders.
+6. Set CLONE HERO SONGS to your actual Clone Hero Songs directory.
+7. Leave SCAN set to "Both" to auto-detect both formats.
+8. Click "1 Preview matches" and review the matched destination folders.
+9. Manually assign any ambiguous songs, then click "2 Install ready videos".
+10. In Clone Hero, rescan songs if needed and enable Song Videos in game settings.
+
+IMPORTANT NAMING RULES
+----------------------
+- Each ZIP or extracted folder MUST be named for the corresponding song.
+  Google-style download timestamps may be appended; GHXP removes them for matching.
+- Inside each ZIP or folder, the actual video should be named "video" with
+  a supported extension: .mp4, .webm, .avi, .ogv, .mpeg, or .mpg.
+- Example: "Rebel Yell.zip" (contains video.mp4) matches a Clone Hero folder
+  such as "Billy Idol - Rebel Yell".
+- Song matching is based on source names and/or song.ini metadata, not the
+  video filename. Preview suggestions carefully, especially duplicate titles.
+- Video files are copied as-is. GHXP does not convert video formats or codecs.
+
+SAFETY
+------
+- Preview does not change files.
+- Existing song videos are never overwritten.
+- Original ZIPs and extracted folders are not moved or deleted.
+- Ambiguous/uncertain matches require review before installation.
+- Only video files are copied; song charts and audio are not modified.
+
+TROUBLESHOOTING
+---------------
+* "Python was not found": install Python 3.10+, then reopen the launcher.
+  If Python is already installed, confirm it works with: py -3 --version
+* "No module named tkinter": repair or reinstall Python using the official
+  Windows installer and ensure the Tcl/Tk component is included.
+* The app opens but finds no songs: verify you selected the real Songs folder
+  that Clone Hero uses, rather than the game install directory.
+* A video is skipped: check the Preview status, duplicate songs, filenames,
+  and whether the destination already contains a video file.
+
+SHARING ON GITHUB
+-----------------
+Keep these files together when distributing GHXP:
+    GHXP.py
+    START_INSTALLER.bat
+    clonehero_wordmark.png
+    clonehero_installer_icon.ico
+    README.md                  (GitHub overview)
+    PREREQUISITES.txt
+    docs/                       (PDF, Markdown, and plain-text setup guides)
+    screenshots/GHXP_UI.png     (app preview image)
+
+GHXP does not contain copyrighted songs or background videos. Users must
+obtain any media they install themselves and ensure they have permission to
+use or distribute it.
